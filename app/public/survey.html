@@ -12,7 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
   </head>
 
-  <body>
+  <body style="background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/rJI8ZWzzio4bewvs/hundreds-of-light-blue-hearts-of-various-shades-and-sizes-slowly-rise-up-on-a-blue-background_s62wp4tf__F0002.png)">
+
 
     <div class="container">
   
@@ -43,7 +44,7 @@
   
       <h3><strong>Question 2</strong></h3>
       <h4>How approachable are you?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q2" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -55,7 +56,7 @@
   
       <h3><strong>Question 3</strong></h3>
       <h4>How loud & talkative are you?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q3" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -67,7 +68,7 @@
   
       <h3><strong>Question 4</strong></h3>
       <h4>How is your current sex life?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q4" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -79,7 +80,7 @@
   
       <h3><strong>Question 5</strong></h3>
       <h4>How badly have you been hurt before?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q5" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -91,7 +92,7 @@
   
       <h3><strong>Question 6</strong></h3>
       <h4>How wealthy are you?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q6" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -103,7 +104,7 @@
   
       <h3><strong>Question 7</strong></h3>
       <h4>How fast do you catch feelings?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q7" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -114,7 +115,7 @@
   
       <h3><strong>Question 8</strong></h3>
       <h4>How smart are you?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+      <select class="chosen-select" id="q8" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -125,7 +126,7 @@
   
       <h3><strong>Question 9</strong></h3>
       <h4>How likely are you to message your "match" once given?</h4>
-      <select class="chosen-select" id="q1" style="width: 155px" class="chosen-single chosen-default"> 
+      <select class="chosen-select" id="q9" style="width: 155px" class="chosen-single chosen-default"> 
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -136,7 +137,7 @@
   
       <h3><strong>Question 10</strong></h3>
       <h4>How seriously are you taking these questions?<h4>
-        <select class="chosen-select" id="q1" style="width: 155px"> <a class="chosen-single chosen-default">
+        <select class="chosen-select" id="q10" style="width: 155px"> <a class="chosen-single chosen-default">
         <option value=""></option>
         <option value="1">1 </option>
         <option value="2">2</option>
@@ -156,14 +157,9 @@
     </div>
   
   </body>
-  <footer class="footer">
-      <div class="container">
-        <p>
-          <a href="/api/tables">API Table Link</a> |
-      </div>
-    </footer>
-
+  
   <script>
+    
   function submit() {
     $("#submit").on("click", function(event) {
           event.preventDefault();
@@ -190,33 +186,49 @@
             var userData = {
               name: $("#name").val(),
               photo: $("#photo").val(),
-              scores: [
-                $("#q1").val(),
-                $("#q2").val(),
-                $("#q3").val(),
-                $("#q4").val(),
-                $("#q5").val(),
-                $("#q6").val(),
-                $("#q7").val(),
-                $("#q8").val(),
-                $("#q9").val(),
-                $("#q10").val()
-              ]
+              score: (
+                Number($("#q1").val()) +
+                Number($("#q2").val()) +
+                Number($("#q3").val()) +
+                Number($("#q4").val()) +
+                Number($("#q5").val()) +
+                Number($("#q6").val()) +
+                Number($("#q7").val()) +
+                Number($("#q8").val()) +
+                Number($("#q9").val()) +
+                Number($("#q10").val()) 
+              )
             };
-      
+      console.log(userData)
             
-            $.ajax({ url: "/api/friends", method: "GET" })
-                .then(function() {
-                    console.log(userData)
-  
 
-        // Loop through and display each of the customers
-        for (var i = 0; i < waitData.length; i++) {
+      const otherProfiles = {
+        Jennifer_lopez: 12,
+        Brad_Pitt: 11,
+        Elon_Musk: 20,
+        Jim_Carry: 30
       }
+  
+  const userDatascore = userData.score
+ 
+  if (userDatascore === otherProfiles.Jennifer_lopez) {
+    alert("You matched Jennifer Lopez")
+  }
+  else if (userDatascore === otherProfiles.Brad_Pitt) {
+    alert("You matched Jennifer Lopez")
+  }
+  else if (userDatascore === otherProfiles.Elon_Musk) {
+    alert("You matched Jennifer Lopez")
+  }
+  else if (userDatascore === otherProfiles.Jim_Carry) {
+    alert("You matched Jennifer Lopez")
+  }
+
           } else {
             alert("Please fill out all fields before submitting!");
           }
       });
   }
+  submit();
   </script>
 </html>
